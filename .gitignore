@@ -1,0 +1,9 @@
+*.o
+*.out
+*.log
+
+day00/ex00/megaphone
+day00/ex01/phonebook
+day00/ex02/account
+
+day01/*/main
