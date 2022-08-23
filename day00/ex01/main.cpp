@@ -2,6 +2,7 @@
 #include "PhoneBook.hpp"
 #include <string>
 #include <cstdlib>
+#include <cctype>
 
 static std::string readString(std::string prompt)
 {
@@ -18,6 +19,13 @@ static int readInteger(std::string prompt)
 
     std::cout << prompt;
     std::getline(std::cin, value);
+    if (value.length() == 0)
+        throw std::invalid_argument("invalid index");
+    for (size_t i = 0; i < value.length(); i++)
+    {
+        if (!isdigit(value[i]))
+            throw std::invalid_argument("invalid index");
+    }
     return (atoi(value.c_str()));
 }
 
@@ -28,12 +36,19 @@ static void addContact(PhoneBook &phoneBook)
     std::string nickName;
     std::string darkestSecret;
 
-    firstName = "helloworld"; // readString("First name: ");
-    lastName = "helloworld111111"; // readString("Last name: ");
-    nickName = "hello-world"; // readString("Nick name: ");
-    darkestSecret = "none"; // readString("Darkest secret: ");
+    firstName = readString("First name: ");
+    lastName = readString("Last name: ");
+    nickName = readString("Nick name: ");
+    darkestSecret = readString("Darkest secret: ");
 
-    phoneBook.addContact(Contact(firstName, lastName, nickName, darkestSecret));
+    if (firstName.length() == 0 || lastName.length() == 0 || nickName.length() == 0 || darkestSecret.length() == 0)
+    {
+        std::cerr << "Cannot add account with empty fields" << std::endl;
+    }
+    else
+    {
+        phoneBook.addContact(Contact(firstName, lastName, nickName, darkestSecret));
+    }
 }
 
 static void displayField(std::string value)
@@ -83,20 +98,24 @@ static void searchContact(PhoneBook &phoneBook)
     Contact contact;
     int index;
 
-    displayContacts(phoneBook.getContacts(), phoneBook.getContactsCount());
-    index = readInteger("Choose an index: ");
     try
     {
+        displayContacts(phoneBook.getContacts(), phoneBook.getContactsCount());
+        index = readInteger("Choose an index: ");
         contact = phoneBook.getContactAt(index);
         displayContactDetails(contact);
     }
-    catch(...)
+    catch (const std::invalid_argument &e)
+    {
+        std::cerr << "invalid index" << std::endl;
+    }
+    catch (const std::out_of_range &e)
     {
         std::cerr << "There is no entry at index " << index << std::endl;
     }
 }
 
-static void execute(PhoneBook &phoneBook, std::string command)
+static void execute(PhoneBook &phoneBook, const std::string &command)
 {
     if (command.compare("ADD") == 0)
         addContact(phoneBook);
@@ -109,7 +128,7 @@ static void execute(PhoneBook &phoneBook, std::string command)
 int main(void)
 {
     std::string command;
-    PhoneBook   phoneBook;
+    PhoneBook phoneBook;
 
     while (true)
     {
