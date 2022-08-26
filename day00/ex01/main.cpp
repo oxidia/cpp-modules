@@ -35,19 +35,21 @@ static void addContact(PhoneBook &phoneBook)
     std::string lastName;
     std::string nickName;
     std::string darkestSecret;
+    std::string phoneNumber;
 
     firstName = readString("First name: ");
     lastName = readString("Last name: ");
     nickName = readString("Nick name: ");
+    phoneNumber = readString("Phone number: ");
     darkestSecret = readString("Darkest secret: ");
 
-    if (firstName.length() == 0 || lastName.length() == 0 || nickName.length() == 0 || darkestSecret.length() == 0)
+    if (firstName.length() == 0 || lastName.length() == 0 || nickName.length() == 0 || phoneNumber.length() == 0 || darkestSecret.length() == 0)
     {
         std::cerr << "Cannot add account with empty fields" << std::endl;
     }
     else
     {
-        phoneBook.addContact(Contact(firstName, lastName, nickName, darkestSecret));
+        phoneBook.addContact(Contact(firstName, lastName, nickName, phoneNumber, darkestSecret));
     }
 }
 
@@ -90,6 +92,7 @@ static void displayContactDetails(Contact contact)
     std::cout << "First name: " << contact.firstName << std::endl;
     std::cout << "Last name: " << contact.lastName << std::endl;
     std::cout << "Nick name: " << contact.nickName << std::endl;
+    std::cout << "Phone number: " << contact.phoneNumber << std::endl;
     std::cout << "Darkest secret: " << contact.darkestSecret << std::endl;
 }
 

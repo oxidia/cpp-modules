@@ -4,10 +4,11 @@ Contact::Contact(void)
 {
 }
 
-Contact::Contact(std::string fName, std::string lName, std::string nName, std::string dSecret)
+Contact::Contact(std::string fName, std::string lName, std::string nName, std::string phoneNumber, std::string dSecret)
 {
-    firstName = fName;
-    lastName = lName;
-    nickName = nName;
-    darkestSecret = dSecret;
+    this->firstName = fName;
+    this->lastName = lName;
+    this->nickName = nName;
+    this->phoneNumber = phoneNumber;
+    this->darkestSecret = dSecret;
 }
