@@ -1,5 +1,5 @@
 NAME=account
-FLAGS= -Wall -Wextra -Werror
+FLAGS= -Wall -Wextra -Werror -std=c++98 -std=c++98
 SRCS=Account.cpp
 HEADERS=Account.hpp
 MAIN=test.cpp

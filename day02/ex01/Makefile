@@ -1,5 +1,5 @@
 NAME=main
-FLAGS= -Wall -Wextra -Werror
+FLAGS= -Wall -Wextra -Werror -std=c++98
 SRCS=Fixed.cpp
 HEADERS=Fixed.hpp
 MAIN=main.cpp

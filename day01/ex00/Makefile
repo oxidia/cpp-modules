@@ -1,5 +1,5 @@
 NAME=main
-FLAGS= -Wall -Wextra -Werror
+FLAGS= -Wall -Wextra -Werror -std=c++98
 SRCS=Zombie.cpp newZombie.cpp randomChump.cpp
 HEADERS=Zombie.hpp
 MAIN=main.cpp

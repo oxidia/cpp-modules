@@ -1,5 +1,5 @@
 NAME=main
-FLAGS= -Wall -Wextra -Werror -Wno-error=implicit-fallthrough
+FLAGS= -Wall -Wextra -Werror -std=c++98 -Wno-error=implicit-fallthrough
 SRCS=Harl.cpp
 HEADERS=Harl.hpp
 MAIN=main.cpp

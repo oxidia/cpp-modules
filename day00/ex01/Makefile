@@ -1,5 +1,5 @@
 NAME=phonebook
-FLAGS= -Wall -Wextra -Werror
+FLAGS= -Wall -Wextra -Werror -std=c++98 -std=c++98
 SRCS=Contact.cpp PhoneBook.cpp
 HEADERS=Contact.hpp PhoneBook.hpp
 MAIN=main.cpp

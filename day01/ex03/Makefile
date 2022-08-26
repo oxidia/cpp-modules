@@ -1,5 +1,5 @@
 NAME=main
-FLAGS= -Wall -Wextra -Werror
+FLAGS= -Wall -Wextra -Werror -std=c++98
 SRCS=Weapon.cpp HumanA.cpp HumanB.cpp
 HEADERS=Weapon.hpp HumanA.hpp HumanB.hpp
 MAIN=main.cpp
