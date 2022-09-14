@@ -16,6 +16,7 @@ Form::Form(const std::string &name, int signingGrade, int executionGrade)
 
 Form::Form(const Form &other)
     : name(other.name), signingGrade(other.signingGrade), executionGrade(other.executionGrade), isSigned(other.isSigned)
+
 {
 }
 
@@ -65,6 +66,15 @@ std::ostream &operator<<(std::ostream &o, const Form &form)
     return o;
 }
 
+void Form::execute(Bureaucrat const &executor) const
+{
+    if (this->getIsSigned() == false)
+        throw Form::FormNotSignedException();
+    if (executor.getGrade() > this->getExecutionGrade())
+        throw Form::GradeTooLowException();
+    this->action();
+}
+
 const char *Form::GradeTooHighException::what() const throw()
 {
     return ("grade too high");
@@ -73,4 +83,9 @@ const char *Form::GradeTooHighException::what() const throw()
 const char *Form::GradeTooLowException::what() const throw()
 {
     return ("grade too low");
+}
+
+const char *Form::FormNotSignedException::what() const throw()
+{
+    return ("form not signed");
 }

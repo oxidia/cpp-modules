@@ -14,17 +14,21 @@ private:
     const int executionGrade;
     bool isSigned;
 
+protected:
+    virtual void action(void) const = 0;
+
 public:
     Form(void);
     Form(const std::string &name, int signingGrade, int executionGrade);
     Form(const Form &other);
     Form &operator=(const Form &other);
-    ~Form();
+    virtual ~Form();
     int getSigningGrade(void) const;
     int getExecutionGrade(void) const;
     std::string getName(void) const;
     bool getIsSigned(void) const;
     void beSigned(const Bureaucrat &br);
+    void execute(Bureaucrat const &executor) const;
 
     class GradeTooHighException : public std::exception
     {
@@ -33,6 +37,12 @@ public:
     };
 
     class GradeTooLowException : public std::exception
+    {
+    public:
+        virtual const char *what() const throw();
+    };
+
+    class FormNotSignedException : public std::exception
     {
     public:
         virtual const char *what() const throw();
