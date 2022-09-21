@@ -5,6 +5,18 @@ Span::Span(unsigned int n)
     this->_maxSize = n;
 }
 
+Span::Span(const Span &other)
+{
+    *this = other;
+}
+
+Span &Span::operator=(const Span &other)
+{
+    this->_maxSize = other._maxSize;
+    this->_numbers = other._numbers;
+    return *this;
+}
+
 Span::~Span()
 {
 }
